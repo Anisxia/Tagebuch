@@ -8,7 +8,6 @@
     <script>
         AFRAME.registerComponent('cursor-listener', {
             init: function () {
-                document.querySelector('a-scene').enterVR();
                 this.el.addEventListener('mouseenter', function () {
                     this.setAttribute('color', '#ff0000'); // Highlight color
                 });
