@@ -1,0 +1,1 @@
+const session = await navigator.xr.requestSession('immersive-vr');
