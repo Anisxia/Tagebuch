@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meine VR-Anwendung mit Textfeld, Buttons und 360-Grad-Bild</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Vincenzooo/aframe-particle-system-component/dist/aframe-particle-system-component.min.js"></script>
+     <script>
+        AFRAME.registerComponent('cursor-listener', {
+            init: function () {
+                this.el.addEventListener('mouseenter', function () {
+                    this.setAttribute('color', '#ff0000'); // Highlight color
+                });
+                this.el.addEventListener('mouseleave', function () {
+                    this.setAttribute('color', '#D2B48C'); // Original color
+                });
+                this.el.addEventListener('click', function () {
+                    if (this.getAttribute('action') === 'nextPage') {
+                        console.log('Button "zum Brunnen" wurde geklickt.');
+                        // Nächste Szene aufrufen
+                        window.location.href = 'brunnen.html'; // Hier Pfad zur nächsten Szene eintragen
+                    } else if (this.getAttribute('action') === 'changeColor') {
+                        console.log('Button "zuruek" wurde geklickt.');
+                        // Hier können Sie die Logik einfügen, um zur vorherigen Szene zu navigieren
+                    }
+                });
+            }
+        });
+
+        AFRAME.registerComponent('birds-animation', {
+            init: function () {
+                // Position der Vögel zufällig im Bereich des Himmels setzen
+                for (let i = 0; i < 1; i++) { // 10 Vögel erstellen
+                    let bird = document.createElement('a-image');
+                    bird.setAttribute('src', 'images/birds.png'); // Pfad zu Ihrem Vogelbild
+                    bird.setAttribute('width', '1');
+                    bird.setAttribute('height', '1');
+                    bird.setAttribute('position', `${randomPosition(-20, 20)} ${randomPosition(10, 30)} ${randomPosition(-20, 20)}`);
+                    bird.setAttribute('animation__fly', {
+                        property: 'position',
+                        dur: 100,
+                        easing: 'linear',
+                        loop: true,
+                        to: `${randomPosition(-20, 20)} ${randomPosition(10, 30)} ${randomPosition(-20, 20)}`
+                    });
+                    this.el.appendChild(bird);
+                }
+            }
+        });
+
+        // Hilfsfunktion zur Erzeugung einer zufälligen Position
+        function randomPosition(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+    </script>
+</head>
+<body>
+    <a-scene>
+        <!-- Hintergrundmusik -->
+        <a-assets>
+            <audio id="background-music" src="sound/moschee.mp3" autoplay loop></audio>
+            <img id="360-image" src="images/moscheeingang.jpg" alt="360 Grad Bild">
+            <img id="textfeld-bild" src="images/Papier.png" alt="Textfeld Bild">
+           
+        </a-assets>
+
+        <!-- 360-Grad-Bild als Himmel -->
+        <a-sky src="#360-image"></a-sky>
+
+
+        <!-- Textfeld -->
+        <a-plane position="0 1.6 -3" width="5" height="1.5" color="#D2B48C" shadow="receive: true" material="src: #textfeld-bild">
+            <a-text value="Die Moschee war riesig, ich konnte es kaum abwarten, reinzugehen." align="center" position="0 0.1 0" color="#FFFFFF"></a-text>
+        </a-plane>
+
+        <!-- Button 1 (Reingehen) -->
+        <a-plane position="-1.4 0.4 -3" width="1.4" height="0.5" color="#D2B48C" img src="images/Papier.png" alt="Papier" shadow="receive: true" class="clickable" cursor-listener action="nextPage">
+            <a-text value="zum Brunnen" align="center" position="0 0 0"></a-text>
+        </a-plane> 
+
+        <!-- Button 2 (Zurück) -->
+        <a-plane position="1.4 0.4 -3" width="1.4" height="0.5" color="#D2B48C" img src="images/Papier.png" alt="Papier"  shadow="receive: true" class="clickable" cursor-listener action="changeColor">
+            <a-text value="zuruek" align="center" position="0 0 0"></a-text>
+        </a-plane>
+
+        <!-- Kamera mit Cursor -->
+        <a-camera position="0 1.6 0">
+            <a-cursor raycaster="objects: .clickable"></a-cursor>
+        </a-camera>
+    </a-scene>
+</body>
+</html>
+
+</html>
+

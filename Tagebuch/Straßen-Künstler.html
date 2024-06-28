@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meine VR-Anwendung mit Video und Partikeln</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Vincenzooo/aframe-particle-system-component/dist/aframe-particle-system-component.min.js"></script>
+    <script>
+        AFRAME.registerComponent('cursor-listener', {
+            init: function () {
+                this.el.addEventListener('mouseenter', function () {
+                    this.setAttribute('color', '#ff0000'); // Highlight color
+                });
+                this.el.addEventListener('mouseleave', function () {
+                    this.setAttribute('color', '#D2B48C'); // Original color
+                });
+                this.el.addEventListener('click', function () {
+                    if (this.getAttribute('action') === 'nextVideo') {
+                        document.querySelector('[video-switch]').emit('switch');
+                    }
+                });
+            }
+        });
+
+        AFRAME.registerComponent('video-switch', {
+            schema: {
+                videos: {type: 'array'}
+            },
+            init: function () {
+                this.currentVideoIndex = 0;
+                this.videoEls = this.data.videos.map(videoId => document.querySelector(videoId));
+                this.showVideo(this.currentVideoIndex);
+
+                this.el.addEventListener('switch', () => {
+                    this.hideAllVideos();
+                    this.currentVideoIndex = (this.currentVideoIndex + 1) % this.videoEls.length;
+                    this.showVideo(this.currentVideoIndex);
+                });
+            },
+            hideAllVideos: function () {
+                this.videoEls.forEach(videoEl => {
+                    videoEl.pause();
+                    videoEl.object3D.visible = false;
+                });
+            },
+            showVideo: function (index) {
+                const videoEl = this.videoEls[index];
+                videoEl.object3D.visible = true;
+                videoEl.play();
+            }
+        });
+
+        AFRAME.registerComponent('play-pause-on-click', {
+            init: function () {
+                this.videoEl = document.querySelector(this.el.getAttribute('src'));
+                this.el.addEventListener('click', () => {
+                    if (this.videoEl.paused) {
+                        this.videoEl.play();
+                    } else {
+                        this.videoEl.pause();
+                    }
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+    <a-scene>
+        <a-assets>
+            <video id="video1" src="videos/video1.mp4" crossorigin="anonymous"></video>
+            <img id="360-image" src="images/Künstler.jpg" alt="360 Grad Bild">
+        </a-assets>
+
+        <!-- 360-Grad-Bild als Himmel -->
+        <a-sky src="#360-image"></a-sky>
+
+        <!-- Partikelsystem -->
+        <a-entity particle-system="preset: dust; particleCount: 5000; size: 0.5; color: #ffffff, #ffffff, #ffffff; opacity: 0.2"></a-entity>
+
+        <!-- Video anzeigen -->
+        <a-video 
+            id="videoElement1"
+            src="#video1"
+            position="0 1.5 -2.5" 
+            width="3" 
+            height="4" 
+            video-switch="videos: #videoElement1"
+            class="clickable"
+            crossorigin="anonymous"
+            visible="false"
+            play-pause-on-click>
+        </a-video>
+
+        <!-- Kamera mit Cursor -->
+        <a-camera position="0 1.6 0">
+            <a-cursor raycaster="objects: .clickable"></a-cursor>
+        </a-camera>
+    </a-scene>
+</body>
+</html>
+
+
+
+
+
+
