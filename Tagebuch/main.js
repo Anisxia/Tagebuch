@@ -10,6 +10,7 @@ AFRAME.registerComponent('cursor-listener', {
                 console.log('Zur nächsten Seite wechseln');
                 // Hier können Sie beispielsweise den Szenenwechsel implementieren
                 window.location.href = 'nextpage.html'; // Beispiel: Weiterleitung zu einer nächsten HTML-Seite
+                document.querySelector('a-scene').enterVR();
             }
         });
     }
