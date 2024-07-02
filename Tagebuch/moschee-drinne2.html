@@ -18,10 +18,10 @@
                     if (this.getAttribute('action') === 'nextPage') {
                         console.log('weiter" wurde geklickt.');
                         // Nächste Szene aufrufen
-                        window.location.href = 'tagebuchbazar.html'; // Hier Pfad zur nächsten Szene eintragen
+                        window.location.href = 'tagebuchbazar.html'; // Hier Pfad zur nächsten Szene 
                     } else if (this.getAttribute('action') === 'changeColor') {
                         console.log('Button "back" wurde geklickt.');
-                        // Zurück zur vorherigen Seite navigieren (innerhalb des VR-Fensters)
+                        // Zurück zur vorherigen Seite navigieren 
                         window.history.back();
                     }
                 });
@@ -42,9 +42,6 @@
         <!-- 360-Grad-Bild als Himmel -->
         <a-sky src="#360-image"></a-sky>
 
-        <!-- Partikelsystem (Schnee als Test) -->
-        <a-entity particle-system="preset: snow; particleCount: 500; size: 1"></a-entity>
-
         <!-- Textfeld -->
         <a-plane position="0 1.6 -3" width="5" height="1.5" color="#D2B48C" shadow="receive: true" material="src: #textfeld-bild">
             <a-text value="Der Mihrab, die islamische Gebetsnische, zeigt die Gebetsrichtung nach Mekka an, ist oft kunstvoll gestaltet, symbolisiert die Anwesenheit des Göttlichen und dient als spiritueller Fokuspunkt in der Moschee." align="center" position="0 0.1 0" color="#FFFFFF"></a-text>
@@ -59,7 +56,7 @@
 
         <!-- Button 2 (Zurück) -->
         <a-plane position="1.4 0.4 -3" width="1.2" height="0.5" color="#D2B48C" img src="images/Papier.png" alt="Papier"  shadow="receive: true" class="clickable" cursor-listener action="changeColor">
-            <a-text value="back" align="center" position="0 0 0"></a-text>
+            <a-text value="zuruek" align="center" position="0 0 0"></a-text>
         </a-plane>
         
         <!-- Kamera mit Cursor -->

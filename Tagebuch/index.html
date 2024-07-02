@@ -20,10 +20,11 @@
                     if (this.getAttribute('action') === 'nextPage') {
                         console.log('Button "zum Brunnen" wurde geklickt.');
                         // Nächste Szene aufrufen
-                        window.location.href = 'brunnen.html'; // Hier Pfad zur nächsten Szene eintragen
+                        window.location.href = 'brunnen.html'; // Hier Pfad zur nächsten Szene 
                     } else if (this.getAttribute('action') === 'changeColor') {
                         console.log('Button "zuruek" wurde geklickt.');
-                        // Hier können Sie die Logik einfügen, um zur vorherigen Szene zu navigieren
+                        window.history.back();
+                    
                     }
                 });
             }

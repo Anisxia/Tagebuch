@@ -19,10 +19,10 @@
                     if (this.getAttribute('action') === 'nextPage') {
                         console.log('zum Bazar" wurde geklickt.');
                         // Nächste Szene aufrufen
-                        window.location.href = 'Bazar-Gold.html'; // Hier Pfad zur nächsten Szene eintragen
+                        window.location.href = 'Bazar-Gold.html'; // Hier Pfad zur nächsten Szene 
                     } else if (this.getAttribute('action') === 'changeColor') {
                         console.log('Button "back" wurde geklickt.');
-                        // Hier können Sie die Logik einfügen, um zur vorherigen Szene zu navigieren
+                        window.history.back();
                     }
                 });
             }
@@ -52,7 +52,7 @@
 
         <!-- Button 2 (Zurück) -->
         <a-plane position="1.4 -0.7 -3" width="1.4" height="0.5" color="#D2B48C" img src="images/Papier.png" alt="Papier"  shadow="receive: true" class="clickable" cursor-listener action="changeColor">
-            <a-text value="back" align="center" position="0 0 0"></a-text>
+            <a-text value="zuruek" align="center" position="0 0 0"></a-text>
         </a-plane>
 
         <!-- Kamera mit Cursor -->

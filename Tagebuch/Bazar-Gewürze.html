@@ -18,10 +18,10 @@
                     if (this.getAttribute('action') === 'nextPage') {
                         console.log('weiter" wurde geklickt.');
                         // Nächste Szene aufrufen
-                        window.location.href = 'tagebuchkünstler.html'; // Hier Pfad zur nächsten Szene eintragen
+                        window.location.href = 'tagebuchkünstler.html'; // Hier Pfad zur nächsten Szene 
                     } else if (this.getAttribute('action') === 'changeColor') {
                         console.log('Button "zuruek" wurde geklickt.');
-                        // Zurück zur vorherigen Seite navigieren (innerhalb des VR-Fensters)
+                        // Zurück zur vorherigen Seite navigieren 
                         window.history.back();
                     }
                 });
@@ -41,9 +41,6 @@
 
         <!-- 360-Grad-Bild als Himmel -->
         <a-sky src="#360-image"></a-sky>
-
-        <!-- Partikelsystem (Schnee als Test) -->
-        <a-entity particle-system="preset: snow; particleCount: 500; size: 1"></a-entity>
 
         <!-- Textfeld -->
         <a-plane position="0 1.6 -3" width="5" height="1.7" color="#D2B48C" shadow="receive: true" material="src: #textfeld-bild">

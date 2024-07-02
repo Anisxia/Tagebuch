@@ -7,6 +7,7 @@
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/Vincenzooo/aframe-particle-system-component/dist/aframe-particle-system-component.min.js"></script>
     <script>
+        
         AFRAME.registerComponent('cursor-listener', {
             init: function () {
                 this.el.addEventListener('mouseenter', function () {
@@ -22,6 +23,7 @@
                 });
             }
         });
+        
 
         AFRAME.registerComponent('video-switch', {
             schema: {
@@ -63,6 +65,26 @@
                 });
             }
         });
+        AFRAME.registerComponent('cursor-listener', {
+            init: function () {
+                this.el.addEventListener('mouseenter', function () {
+                    this.setAttribute('color', '#ff0000'); // Highlight color
+                });
+                this.el.addEventListener('mouseleave', function () {
+                    this.setAttribute('color', '#D2B48C'); // Original color
+                });
+                this.el.addEventListener('click', function () {
+                    if (this.getAttribute('action') === 'nextPage') {
+                        console.log('weiter" wurde geklickt.');
+                        // Nächste Szene aufrufen
+                        window.location.href = 'Tagebuch-ende.html'; // Hier Pfad zur nächsten Szene
+                    } else if (this.getAttribute('action') === 'changeColor') {
+                        console.log('Button "zuruek" wurde geklickt.');
+                        window.history.back();
+                    }
+                });
+            }
+        })
     </script>
 </head>
 <body>
@@ -75,8 +97,6 @@
         <!-- 360-Grad-Bild als Himmel -->
         <a-sky src="#360-image"></a-sky>
 
-        <!-- Partikelsystem -->
-        <a-entity particle-system="preset: dust; particleCount: 5000; size: 0.5; color: #ffffff, #ffffff, #ffffff; opacity: 0.2"></a-entity>
 
         <!-- Video anzeigen -->
         <a-video 
@@ -91,6 +111,16 @@
             visible="false"
             play-pause-on-click>
         </a-video>
+
+        <!-- Button 1 (Reingehen) -->
+        <a-plane position="-1.1 -1.3 -3" width="1.4" height="0.5" color="#D2B48C" img src="images/Papier.png" alt="Papier" shadow="receive: true" class="clickable" cursor-listener action="nextPage">
+            <a-text value="weiter" align="center" position="0 0 0"></a-text>
+        </a-plane> 
+
+        <!-- Button 2 (Zurück) -->
+        <a-plane position="1.1 -1.3 -3" width="1.4" height="0.5" color="#D2B48C" img src="images/Papier.png" alt="Papier"  shadow="receive: true" class="clickable" cursor-listener action="changeColor">
+            <a-text value="zuruek" align="center" position="0 0 0"></a-text>
+        </a-plane>
 
         <!-- Kamera mit Cursor -->
         <a-camera position="0 1.6 0">

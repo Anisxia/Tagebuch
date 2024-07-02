@@ -17,9 +17,9 @@
                 });
                 this.el.addEventListener('click', function () {
                     if (this.getAttribute('action') === 'nextPage') {
-                        console.log('zum Künstler" wurde geklickt.');
+                        console.log('zum Bazar" wurde geklickt.');
                         // Nächste Szene aufrufen
-                        window.location.href = 'Straßen-Künstler.html'; // Hier Pfad zur nächsten Szene 
+                        window.location.href = 'index.html'; // Hier Pfad zur nächsten Szene 
                     } else if (this.getAttribute('action') === 'changeColor') {
                         console.log('Button "back" wurde geklickt.');
                         window.history.back();
@@ -36,18 +36,18 @@
             <audio id="background-music" src="sound/birds-chirping.mp3" autoplay loop></audio>
             <img id="360-image" src="images/berge.png" alt="360 Grad Bild">
             <img id="textfeld-bild" src="images/Papier.png" alt="Textfeld Bild">
-            <img id="Künstler" src="images/Künstler.png" alt="Künstler">
+            <img id="Tagebuchbazar" src="images/Tagebuch-moschee.png" alt="Tagebuchbazar">
         </a-assets>
 
         <!-- 360-Grad-Bild als Himmel -->
         <a-sky src="#360-image"></a-sky>
 
     
-        <a-image src="#Künstler" position="0 1.6 -3" width="6.5" height="4"></a-image>
+        <a-image src="#Tagebuchbazar" position="0 1.6 -3" width="6.5" height="4"></a-image>
 
         <!-- Button 1 (Reingehen) -->
         <a-plane position="-1.4 -0.7 -3" width="1.4" height="0.5" color="#D2B48C" img src="images/Papier.png" alt="Papier" shadow="receive: true" class="clickable" cursor-listener action="nextPage">
-            <a-text value="zum Kuenstler" align="center" position="0 0 0"></a-text>
+            <a-text value="zur Moschee" align="center" position="0 0 0"></a-text>
         </a-plane> 
 
         <!-- Button 2 (Zurück) -->
