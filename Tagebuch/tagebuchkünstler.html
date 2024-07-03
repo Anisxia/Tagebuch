@@ -31,7 +31,7 @@
 </head>
 <body>
     <a-scene>
-        <!-- Hintergrundmusik -->
+      
         <a-assets>
             <audio id="background-music" src="sound/birds-chirping.mp3" autoplay loop></audio>
             <img id="360-image" src="images/berge.png" alt="360 Grad Bild">
@@ -39,23 +39,23 @@
             <img id="Künstler" src="images/Künstler.png" alt="Künstler">
         </a-assets>
 
-        <!-- 360-Grad-Bild als Himmel -->
+   
         <a-sky src="#360-image"></a-sky>
 
     
         <a-image src="#Künstler" position="0 1.6 -3" width="6.5" height="4"></a-image>
 
-        <!-- Button 1 (Reingehen) -->
+       
         <a-plane position="-1.4 -0.7 -3" width="1.4" height="0.5" color="#D2B48C" img src="images/Papier.png" alt="Papier" shadow="receive: true" class="clickable" cursor-listener action="nextPage">
             <a-text value="zum Kuenstler" align="center" position="0 0 0"></a-text>
         </a-plane> 
 
-        <!-- Button 2 (Zurück) -->
+ 
         <a-plane position="1.4 -0.7 -3" width="1.4" height="0.5" color="#D2B48C" img src="images/Papier.png" alt="Papier"  shadow="receive: true" class="clickable" cursor-listener action="changeColor">
             <a-text value="zuruek" align="center" position="0 0 0"></a-text>
         </a-plane>
 
-        <!-- Kamera mit Cursor -->
+    
         <a-camera position="0 1.6 0">
             <a-cursor raycaster="objects: .clickable"></a-cursor>
         </a-camera>
